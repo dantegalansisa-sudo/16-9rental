@@ -32,9 +32,17 @@ export default function EquipmentCard({ equipment, onAdd, inCart, onDetail }: Eq
 
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     setIsAdding(true);
     onAdd(equipment);
     setTimeout(() => setIsAdding(false), 300);
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Solo abrir modal si onDetail existe y no se hizo clic en un botón
+    if (onDetail && !(e.target as HTMLElement).closest('button')) {
+      onDetail(equipment);
+    }
   };
 
   return (
@@ -42,7 +50,7 @@ export default function EquipmentCard({ equipment, onAdd, inCart, onDetail }: Eq
       className="eq-card"
       variants={cardVariants}
       whileHover={{ y: -4, transition: { duration: 0.25 } }}
-      onClick={() => onDetail && onDetail(equipment)}
+      onClick={handleCardClick}
       style={{ cursor: onDetail ? 'pointer' : 'default' }}
     >
       <div className="eq-card__frame">

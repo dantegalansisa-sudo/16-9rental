@@ -57,9 +57,10 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          preload="auto"
           style={{ scale: bgScale }}
         >
-          <source src="/images/Nuestro paquete @sonycine FX3 + @dzofilm CATTA zooms kit, no hay mucho que decir🤭No dudes en co.mp4" type="video/mp4" />
+          <source src="/hero-video.mp4" type="video/mp4" />
         </motion.video>
         <div className="hero__overlay" />
       </div>
