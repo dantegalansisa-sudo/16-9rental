@@ -68,7 +68,7 @@ export default function CategoryPage({ onAdd, isInCart }: CategoryPageProps) {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
       }
     }
   };
@@ -82,7 +82,7 @@ export default function CategoryPage({ onAdd, isInCart }: CategoryPageProps) {
           className="category-page__header"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
         >
           <span className="label-mono">CATÁLOGO</span>
           <h1 className="category-page__title">

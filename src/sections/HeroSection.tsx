@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import RevealText from '../components/RevealText';
-import MagneticButton from '../components/MagneticButton';
-import { equipment } from '../data/equipment';
 
 export default function HeroSection() {
   const { scrollYProgress } = useScroll();
   const bgScale = useTransform(scrollYProgress, [0, 0.4], [1, 1.1]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.4], [0, 60]);
-
-  // Get 3 featured equipment for preview
-  const featuredPreview = equipment.filter(eq => eq.featured).slice(0, 3);
 
   const brands = [
     { name: 'Sony', icon: '📹' },

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { equipment, type Equipment } from '../data/equipment';
 import EquipmentCard from '../components/EquipmentCard';
 import EquipmentDetailModal from '../components/EquipmentDetailModal';
-import MagneticButton from '../components/MagneticButton';
 import CallToAction from '../components/CallToAction';
 
 interface FeaturedEquipmentProps {
@@ -33,7 +32,7 @@ export default function FeaturedEquipment({ onAdd, isInCart }: FeaturedEquipment
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1]
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
       }
     }
   };
@@ -48,7 +47,7 @@ export default function FeaturedEquipment({ onAdd, isInCart }: FeaturedEquipment
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
         >
           <div className="featured__header-left">
             <span className="label-mono">Lo Mejor de Nuestro Inventario</span>
