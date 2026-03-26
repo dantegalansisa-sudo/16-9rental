@@ -5,6 +5,7 @@ import { equipment, categories, type Equipment } from '../data/equipment';
 import EquipmentCard from '../components/EquipmentCard';
 import EquipmentFilters from '../components/EquipmentFilters';
 import EquipmentDetailModal from '../components/EquipmentDetailModal';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 interface CategoryPageProps {
   onAdd: (eq: Equipment) => void;
@@ -91,6 +92,15 @@ export default function CategoryPage({ onAdd, isInCart }: CategoryPageProps) {
             {filteredEquipment.length} {filteredEquipment.length === 1 ? 'equipo' : 'equipos'} disponibles
           </div>
         </motion.div>
+
+        {/* Breadcrumbs */}
+        <Breadcrumbs
+          items={[
+            { label: 'Inicio', href: '/' },
+            { label: 'Catálogo', href: '/catalogo/camara' },
+            { label: selectedCategory === 'all' ? 'Todos' : categoryInfo?.label || '' }
+          ]}
+        />
 
         {/* Watermark */}
         <div className="category-page__watermark" aria-hidden="true">16:9</div>

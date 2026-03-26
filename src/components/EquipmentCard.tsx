@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Equipment } from '../data/equipment';
 import { categories } from '../data/equipment';
@@ -27,6 +28,15 @@ function getCategoryLabel(cat: string) {
 }
 
 export default function EquipmentCard({ equipment, onAdd, inCart, onDetail }: EquipmentCardProps) {
+  const [isAdding, setIsAdding] = useState(false);
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsAdding(true);
+    onAdd(equipment);
+    setTimeout(() => setIsAdding(false), 300);
+  };
+
   return (
     <motion.div
       className="eq-card"
@@ -39,15 +49,13 @@ export default function EquipmentCard({ equipment, onAdd, inCart, onDetail }: Eq
         <img src={equipment.image} alt={equipment.name} className="eq-card__img" />
         <div className="eq-card__img-overlay" />
         <span className="eq-card__cat">{getCategoryLabel(equipment.category)}</span>
-        <button
-          className={`eq-card__quick-add${inCart ? ' eq-card__quick-add--added' : ''}`}
-          onClick={(e) => {
-            e.stopPropagation();
-            onAdd(equipment);
-          }}
+        <motion.button
+          className={`eq-card__quick-add${inCart ? ' eq-card__quick-add--added' : ''}${isAdding ? ' adding' : ''}`}
+          onClick={handleAdd}
+          whileTap={{ scale: 0.9 }}
         >
           {inCart ? '\u2713' : '+'}
-        </button>
+        </motion.button>
       </div>
 
       <div className="eq-card__body">
@@ -59,15 +67,22 @@ export default function EquipmentCard({ equipment, onAdd, inCart, onDetail }: Eq
         </div>
         <div className="eq-card__footer">
           <span className="eq-card__price">Consultar precio</span>
-          <button
-            className="eq-card__cta"
-            onClick={(e) => {
-              e.stopPropagation();
-              onAdd(equipment);
-            }}
+          <motion.button
+            className={`eq-card__cta${isAdding ? ' adding' : ''}`}
+            onClick={handleAdd}
+            whileTap={{ scale: 0.95 }}
           >
-            {inCart ? 'Agregado' : 'Rentar \u2192'}
-          </button>
+            {inCart ? (
+              <>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Agregado
+              </>
+            ) : (
+              'Rentar \u2192'
+            )}
+          </motion.button>
         </div>
       </div>
     </motion.div>
